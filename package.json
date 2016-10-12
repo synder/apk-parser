@@ -1,0 +1,17 @@
+{
+  "name": "apk-parser",
+  "version": "0.1.0",
+  "description": "a node wraper for aapt(android)",
+  "main": "index.js",
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/synder/apk-parser.git"
+  },
+  "keywords": [
+    "aapt",
+    "apk",
+    "apk parser",
+    "android"
+  ],
+  "license": "MIT"
+}
