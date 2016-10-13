@@ -18,8 +18,6 @@ if(!path.isAbsolute(apkPath)){
     apkPath = path.resolve(apkPath);
 }
 
-console.log(apkPath);
-
 if(path.extname(apkPath).toLowerCase() != '.apk') {
     throw new Error('-p must be a apk path');
 }
