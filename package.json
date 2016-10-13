@@ -1,12 +1,22 @@
 {
-  "name": "apk-parser",
-  "version": "0.1.0",
+  "name": "apker",
+  "version": "1.0.2",
   "description": "a node wraper for aapt(android)",
   "main": "index.js",
+  "bin": {
+    "apker": "./bin/command"
+  },
+  "scripts": {
+      "install":"chmod +x ./bin/*"
+  },
+  "dependencies": {
+      "commander":"*"
+  },
   "repository":{
     "type": "git",
     "url": "https://github.com/synder/apk-parser.git"
   },
+  "author": "SYNDE KEYES <812256717@qq.com>",
   "keywords": [
     "aapt",
     "apk",
