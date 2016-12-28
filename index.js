@@ -29,9 +29,11 @@ exports.parse = function (filepath, callback) {
         var permissions = [];
         var features = [];
         var impliedFeatures = [];
+        var architectureInfo = [];
+        var supportsScreens = [];
+        var densities = [];
 
         var infosTemp = {};
-
 
         infos.forEach(function (info) {
             if(info){
@@ -46,6 +48,12 @@ exports.parse = function (filepath, callback) {
                         features.push(value);
                     }else if(key == 'uses-implied-feature'){
                         impliedFeatures.push(value);
+                    }else if (key == 'native-code' && value && value.length) {
+                        architectureInfo = value.trim().split(' ');
+                    }else if (key == 'supports-screens' && value && value.length) {
+                        supportsScreens = value.trim().split(' ');
+                    }else if (key == 'densities' && value && value.length) {
+                        densities = value.trim().split(' ');
                     }
                 }
             }
@@ -86,7 +94,10 @@ exports.parse = function (filepath, callback) {
             targetSdkVersion: parseInt(infosTemp['targetSdkVersion']),
             usesPermission: permissions.sort(),
             usesFeature: features.sort(),
-            useImpliedFeature: impliedFeatures.sort()
+            useImpliedFeature: impliedFeatures.sort(),
+            architectureInfo: architectureInfo,
+            supportsScreens: supportsScreens,
+            densities: densities
         });
     });
 };
