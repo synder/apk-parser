@@ -39,7 +39,7 @@ exports.parse = function (filepath, callback) {
             if (info) {
                 // var t = info.split(':');
                 var t = info.split(/:(.+)/);
-                if (t.length == 2) {
+                if (t.length === 3) {
                     var key = t[0].trim();
                     var value = t[1].trim().replace(new RegExp("'", 'g'), "");
                     infosTemp[key] = value;
