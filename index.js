@@ -64,14 +64,14 @@ exports.parse = function (filepath, callback) {
         });
 
         var applicationInfo = infosTemp['application'].split(' ');
-        var applicationLabel = null;
+        var applicationLabel = infosTemp['application-label'];
 
         applicationInfo.forEach(function (info) {
             if(info){
                 var t = info.split('=');
                 if(t.length === 2){
                     if(t[0].trim() == 'label'){
-                        applicationLabel = t[1].trim().replace('\'', '');
+                        applicationLabel = applicationLabel || t[1].trim().replace('\'', '');
                     }
                 }
             }
