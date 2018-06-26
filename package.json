@@ -1,6 +1,6 @@
 {
-  "name": "apker2",
-  "version": "1.0.5",
+  "name": "apker",
+  "version": "1.0.4",
   "description": "a node wraper for aapt(android)",
   "main": "index.js",
   "bin": {
@@ -14,9 +14,9 @@
   },
   "repository":{
     "type": "git",
-    "url": "https://github.com/taisukeh/apk-parser.git"
+    "url": "https://github.com/synder/apk-parser.git"
   },
-  "author": "SYNDE KEYES <812256717@qq.com>, Taisuke HORI <taisuke.horix@gmail.com>",
+  "author": "author": "SYNDE KEYES <812256717@qq.com>",
   "keywords": [
     "aapt",
     "apk",
