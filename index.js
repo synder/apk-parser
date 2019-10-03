@@ -12,8 +12,8 @@ var exec = require('child_process').exec;
  * */
 exports.parse = function (filepath, callback) {
 
-    var aapt = path.join(__dirname, 'bin', 'aapt_' + os.platform());
-    var command = aapt + " d badging " + filepath;
+    var aapt = path.join(__dirname, 'bin', 'aapt_' + (os.platform() === 'win32' ? os.platform() + '.exe' : os.platform()));
+    var command = aapt + " d badging \"" + filepath + "\"";
 
     exec(command, function (err, stdout, stderr) {
         if(err){
@@ -63,25 +63,21 @@ exports.parse = function (filepath, callback) {
             }
         });
 
-        var applicationInfo = infosTemp['application'].split(' ');
+        var applicationInfo = infosTemp['application'].match(/label=(?<label>[\w\s]+)\sicon=(?<icon>.+)$/im)
         var applicationLabel = null;
+        var applicationIcon = null;
 
-        applicationInfo.forEach(function (info) {
-            if(info){
-                var t = info.split('=');
-                if(t.length === 2){
-                    if(t[0].trim() == 'label'){
-                        applicationLabel = t[1].trim().replace('\'', '');
-                    }
-                }
-            }
-        });
+        if (applicationInfo.length > 1) {
+            applicationLabel = applicationInfo[1];
+            applicationIcon = applicationInfo[2];
+        }
 
         callback(null, {
             packageName: packageInfoTemp['name'],
             packageVersionName: packageInfoTemp['versionName'],
             packageVersionCode: parseInt(packageInfoTemp['versionCode']),
             applicationLabel: applicationLabel,
+            applicationIcon: applicationIcon,
             sdkVersion: parseInt(infosTemp['sdkVersion']),
             targetSdkVersion: parseInt(infosTemp['targetSdkVersion']),
             usesPermission: permissions.sort(),
