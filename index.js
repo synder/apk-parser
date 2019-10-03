@@ -13,7 +13,7 @@ var exec = require('child_process').exec;
 exports.parse = function (filepath, callback) {
 
     var aapt = path.join(__dirname, 'bin', 'aapt_' + (os.platform() === 'win32' ? os.platform() + '.exe' : os.platform()));
-    var command = aapt + " d badging " + filepath;
+    var command = aapt + " d badging \"" + filepath + "\"";
 
     exec(command, function (err, stdout, stderr) {
         if(err){
